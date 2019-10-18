@@ -55,5 +55,9 @@ public class No implements N{
     public void remanejar(int p) {
         for (int i = TL; i > p; i--)
             vInfo[i] = vInfo[i-1];
-    }    
+    }
+    
+    public int procurarPosicao(int info) {
+        return 0;
+    }
 }
