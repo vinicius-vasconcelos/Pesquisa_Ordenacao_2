@@ -1,5 +1,5 @@
 package classes;
 
 public interface N {
-    final int N = 3;
+    final int N = 2;
 }
