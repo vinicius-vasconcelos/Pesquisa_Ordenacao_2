@@ -17,7 +17,13 @@ public class ArvoreB {
         raiz.inserirArvore(6);
 
         raiz.inOrdem(raiz.getRaiz());
-
+        
+        System.out.println("\n----------------------\n");
+        raiz.excluirArvore(10);
+        raiz.excluirArvore(3);
+        raiz.excluirArvore(20);
+        
+        raiz.inOrdem(raiz.getRaiz());
     }
 
 }

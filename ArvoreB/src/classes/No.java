@@ -2,73 +2,97 @@ package classes;
 
 public class No implements N {
 
-    private int vInfo[];
-    private int vPos[];
-    private No vLig[];
-    private int TL;
+    private int[] vInfo;
+    private int[] vPos;
+    private No[] vLig;
+    private int tl;
 
     public No() {
-        this.vInfo = new int[N * 2 - 1];
-        this.vPos = new int[N * 2 - 1];
-        this.vLig = new No[N * 2 + 2];
-        this.TL = 0;
+        vInfo = new int[N * 2 + 1];
+        vPos = new int[N * 2 + 1];
+        vLig = new No[N * 2 + 2];
+        tl = 0;
     }
 
     public No(int info) {
-        this.vInfo = new int[N * 2 + 1];
-        this.vPos = new int[N * 2 + 1];
-        this.vLig = new No[N * 2 + 2];
-
-        this.vInfo[0] = info;
-        this.TL = 1;
+        vInfo = new int[N * 2 + 1];
+        vPos = new int[N * 2 + 1];
+        vLig = new No[N * 2 + 2];
+        vInfo[0] = info;
+        tl = 1;
     }
 
-    public int getvInfo(int p) {
-        return vInfo[p];
+    public int getvInfo(int pos) {
+        return vInfo[pos];
     }
 
-    public void setvInfo(int p, int info) {
-        this.vInfo[p] = info;
+    public void setvInfo(int pos, int info) {
+        vInfo[pos] = info;
     }
 
-    public int getvPos(int p) {
-        return vPos[p];
+    public int getvPos(int pos) {
+        return vPos[pos];
     }
 
-    public void setvPos(int p, int posArq) {
-        this.vPos[p] = posArq;
+    public void setvPos(int pos, int info) {
+        vPos[pos] = info;
     }
 
-    public No getvLig(int p) {
-        return vLig[p];
+    public No getvLig(int pos) {
+        return vLig[pos];
     }
 
-    public void setvLig(int p, No lig) {
-        this.vLig[p] = lig;
+    public void setvLig(No no, int pos) {
+        vLig[pos] = no;
     }
 
-    public int getTL() {
-        return TL;
+    public void setvLig(int pos, No no) {
+        vLig[pos] = no;
     }
 
-    public void setTL(int TL) {
-        this.TL = TL;
+    public int getTl() {
+        return tl;
     }
 
-    public void remanejar(int pos) {
-        vLig[TL + 1] = vLig[TL];
-        for (int i = TL; i > pos; i--) {
+    public void setTl(int tl) {
+        this.tl = tl;
+    }
+
+    public int procura_Pos(int info) {
+        int i = 0;
+        while (i < tl && info > vInfo[i]) {
+            i++;
+        }
+        return i;
+    }
+
+    public void Remaneja(int pos) {
+        vLig[tl + 1] = vLig[tl];
+        for (int i = tl; i > pos; i--) {
             vInfo[i] = vInfo[i - 1];
             vPos[i] = vPos[i - 1];
             vLig[i] = vLig[i - 1];
         }
     }
 
-    public int procurarPosicao(int info) {
-        int i = 0;
-        while (i < TL && info > vInfo[i]) {
-            i++;
+    public void RemanejaEx(int pos) {
+        for (int i = pos; i < tl - 1; i++) {
+            vInfo[i] = vInfo[i + 1];
+            vLig[i] = vLig[i + 1];
+            vPos[i] = vPos[i + 1];
         }
-        return i;
+        vLig[tl - 1] = vLig[tl];
+    }
+
+    boolean isFolha() {
+        return vLig[0] == null;
+    }
+
+    public void decTl() {
+        tl--;
+    }
+
+    public void incTl() {
+        tl++;
     }
 }
